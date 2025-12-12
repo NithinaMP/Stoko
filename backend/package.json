@@ -1,27 +1,32 @@
 {
-  "name": "backend",
+  "name": "stoko-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Stoko - Smart Household Inventory Tracker Backend",
+  "main": "src/app.js",
   "scripts": {
-  "dev": "nodemon src/server.js",
-  "start": "node src/server.js"
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "inventory",
+    "expiry-tracker",
+    "household-management"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "bcrypt": "^6.0.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "multer": "^2.0.2",
-    "mysql2": "^3.15.3",
-    "node-cron": "^4.2.1",
-    "sequelize": "^6.37.7"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.6.0",
+    "node-cron": "^3.0.2",
+    "sequelize": "^6.32.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.0.1"
   }
 }

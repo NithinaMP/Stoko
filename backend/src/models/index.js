@@ -11,22 +11,29 @@ const HomeMember = HomeMemberModel(sequelize);
 const Item = ItemModel(sequelize);
 const Notification = NotificationModel(sequelize);
 
-// Associations
+// User -> Home (creator)
 User.hasMany(Home, { foreignKey: "created_by" });
 Home.belongsTo(User, { foreignKey: "created_by" });
 
+// Home -> Items
 Home.hasMany(Item, { foreignKey: "home_id" });
 Item.belongsTo(Home, { foreignKey: "home_id" });
 
+// User -> Items (added by)
 User.hasMany(Item, { foreignKey: "added_by" });
-Item.belongsTo(User, { foreignKey: "added_by" });
+Item.belongsTo(User, { foreignKey: "added_by", as: "AddedByUser" });
 
-Home.belongsToMany(User, { through: HomeMember, foreignKey: "home_id", otherKey: "user_id" });
-User.belongsToMany(Home, { through: HomeMember, foreignKey: "user_id", otherKey: "home_id" });
+// Home <-> User (through HomeMember)
+HomeMember.belongsTo(Home, { foreignKey: "home_id" });
+HomeMember.belongsTo(User, { foreignKey: "user_id" });
+Home.hasMany(HomeMember, { foreignKey: "home_id" });
+User.hasMany(HomeMember, { foreignKey: "user_id" });
 
+// Item -> Notifications
 Item.hasMany(Notification, { foreignKey: "item_id" });
 Notification.belongsTo(Item, { foreignKey: "item_id" });
 
+// User -> Notifications
 User.hasMany(Notification, { foreignKey: "user_id" });
 Notification.belongsTo(User, { foreignKey: "user_id" });
 

@@ -1,10 +1,11 @@
 ﻿const express = require("express");
 const router = express.Router();
+const homeCtrl = require("../controllers/home.controller");
 const authMW = require("../middlewares/auth.middleware");
 
-// simple create home stub - real implementation can be extended
-router.post("/create", authMW, async (req, res) => {
-  res.json({ message: "create home endpoint - implement later" });
-});
+router.post("/create", authMW, homeCtrl.createHome);
+router.get("/my-homes", authMW, homeCtrl.getMyHomes);
+router.post("/invite", authMW, homeCtrl.inviteMember);
+router.get("/members", authMW, homeCtrl.getMembers);
 
 module.exports = router;
